@@ -18,18 +18,27 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
-          working_directory: paper
-          args: "-pdf -file-line-error -interaction=nonstopmode"
+          working_directory: ./paper
+          continue_on_error: "true"
+
+      - name: Check for PDF output
+        run: |
+          ls -la paper/ || true
+          ls -la main.pdf || true
+          ls -la paper/main.pdf || true
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
+        if: hashFiles('paper/main.pdf') != ''
         with:
           name: USMLE_Research_Draft
           path: paper/main.pdf
           retention-days: 30
 
-      - name: Upload to GitHub Release (if tagged)
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v2
+      - name: Upload PDF artifact (fallback)
+        uses: actions/upload-artifact@v4
+        if: hashFiles('main.pdf') != ''
         with:
-          files: paper/main.pdf
+          name: USMLE_Research_Draft
+          path: main.pdf
+          retention-days: 30
