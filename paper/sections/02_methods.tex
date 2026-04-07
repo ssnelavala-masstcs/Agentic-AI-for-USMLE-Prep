@@ -9,13 +9,15 @@ The Agentic USMLE Study Planning System employs a stateful graph architecture im
 The agentic graph follows a directed acyclic structure with conditional branching (Figure \ref{fig:graph_architecture}):
 
 \begin{verbatim}
-START → Diagnostician → KnowledgeManager → ResourceOptimizer → Scheduler
-                                                                          ↓
-                                        ┌─────────────────────────────────┼──────────────┐
-                                        ↓                                 ↓              ↓
-                                HumanReview (conditional)            Finalize  →  END
-                                        ↓                                 
-                                        └─────────────────────────────────┘
+START --> Diagnostician --> KnowledgeManager --> ResourceOptimizer --> Scheduler
+                                                                               |
+                                                                               v
+                                        +--------------------------------------+------+
+                                        |                                            |
+                                        v                                            v
+                                HumanReview (conditional)                       Finalize
+                                        |                                            |
+                                        +--------------------------------------------+
 \end{verbatim}
 
 \begin{figure}[H]

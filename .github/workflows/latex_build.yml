@@ -20,25 +20,20 @@ jobs:
           root_file: main.tex
           working_directory: ./paper
           continue_on_error: "true"
+          args: "-pdf -file-line-error -interaction=nonstopmode"
+          post_compile: |
+            # Run latexmk again to resolve cross-references
+            latexmk -pdf -interaction=nonstopmode main.tex || true
 
       - name: Check for PDF output
         run: |
-          ls -la paper/ || true
-          ls -la main.pdf || true
-          ls -la paper/main.pdf || true
+          echo "Checking for PDF..."
+          find . -name "main.pdf" -exec ls -la {} \;
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
-        if: hashFiles('paper/main.pdf') != ''
         with:
           name: USMLE_Research_Draft
           path: paper/main.pdf
           retention-days: 30
-
-      - name: Upload PDF artifact (fallback)
-        uses: actions/upload-artifact@v4
-        if: hashFiles('main.pdf') != ''
-        with:
-          name: USMLE_Research_Draft
-          path: main.pdf
-          retention-days: 30
+          if-no-files-found: error
