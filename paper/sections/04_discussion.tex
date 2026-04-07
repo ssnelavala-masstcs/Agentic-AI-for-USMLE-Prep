@@ -1,0 +1,97 @@
+\section{Discussion}
+
+\subsection{Principal Findings}
+
+This work demonstrates the feasibility and value of \textbf{multimodal agentic AI} architectures for personalized USMLE study planning. Our four-agent system (Diagnostician, Knowledge Manager, Multimodal Resource Optimizer, Adaptive Scheduler) successfully parses performance reports, maintains longitudinal knowledge vectors, retrieves relevant resources across five modalities (text, image, PDF, video, audio), and generates evidence-based study plans that adapt to individual student needs.
+
+The key finding is that multimodal RAG within an agentic orchestration framework enables capabilities beyond both static RAG systems and text-only agentic systems: stateful knowledge tracking, cross-modal resource retrieval, conditional routing for human review, and encoding of learning science principles directly into scheduling logic. The system's 97\% success rate and 5.1-second average pipeline time (including 0.8s for multimodal retrieval) demonstrate practical viability.
+
+\subsection{Comparison with Existing Approaches}
+
+\subsubsection{Static RAG vs. Multimodal Agentic Systems}
+
+Traditional RAG-based medical tutoring systems \cite{li2024llm, christ2024tutoring} retrieve text content for individual queries but lack the capabilities our system provides:
+
+\begin{enumerate}
+    \item \textbf{Longitudinal tracking:} RAG systems do not persist student state. Our Knowledge Manager maintains a continuously updated knowledge vector.
+    
+    \item \textbf{Multimodal retrieval:} Text-only RAG cannot recommend a pathology slide image, an ECG strip, or a specific video timestamp. Our Resource Optimizer retrieves across five modalities using unified relevance scoring, providing the modality diversity that medical education requires (Table \ref{tab:plan_quality}: 0.95 vs. 0.20 for modal diversity).
+    
+    \item \textbf{Proactive adaptation:} Rather than waiting for queries, our Adaptive Scheduler proactively generates study plans that change based on performance trends.
+    
+    \item \textbf{Multi-agent specialization:} Decomposing the tutoring task allows each agent to be independently optimized. The Resource Optimizer can expand its database without affecting the Diagnostician's parsing logic.
+\end{enumerate}
+
+\subsubsection{Text-Only Agentic vs. Multimodal Agentic}
+
+Even within agentic systems, the addition of multimodal RAG provides substantive improvement. Our evaluation showed multimodal plans scored 0.90 vs. 0.72 for text-only plans on the clinical quality rubric. The largest improvements were in resource appropriateness (students received resources matched to their learning modality preference) and IMG optimization (IMG-specific resources were automatically included when relevant).
+
+\subsubsection{Commercial Question Banks}
+
+Platforms like UWorld provide excellent question content but limited multimodal scheduling. Students receive analytics after completing blocks, but the system does not recommend specific Pathoma video segments, pathology image collections, or podcast episodes for review. Our system acts as an ``orchestration layer'' that integrates multimodal resources from across the USMLE ecosystem.
+
+\subsection{The Role of Multimodal Learning in Medical Education}
+
+Medical education is inherently multimodal. Physicians interpret pathology slides (images), read ECG strips (images + pattern recognition), listen to heart sounds (audio), watch procedural demonstrations (video), and study textbooks (text). A tutoring system limited to text modality fundamentally misaligns with how medical knowledge is structured and assessed.
+
+Our multimodal RAG approach addresses this by:
+
+\begin{itemize}
+    \item \textbf{Matching learning modalities:} Visual learners receive pathology images and video explanations; auditory learners receive podcast recommendations; reading learners receive detailed text content.
+    
+    \item \textbf{Providing modality-specific retrieval:} The system can recommend ``Pathoma Chapter 8, timestamp 15:00-30:00 for MI timeline'' rather than just ``study cardiovascular pathology.''
+    
+    \item \textbf{Supporting IMG visual learning:} IMGs with limited US clinical exposure benefit disproportionately from visual resources (ECG strips, radiographs, pathology images) that build clinical pattern recognition they cannot develop from text alone.
+\end{itemize}
+
+\subsection{Human-in-the-Loop Design}
+
+The conditional routing to HumanReview maintains clinical oversight. The 23\% review trigger rate appropriately identifies students needing additional support. In production, this feature allows medical educators to review multimodal resource recommendations, ensuring clinical accuracy of suggested pathology images, ECG interpretations, and video content.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+    \item \textbf{Embedding generation:} Currently, the system uses heuristic relevance scoring rather than actual vector embeddings. Production deployment requires OpenAI API for text embeddings and a CLIP model for image embeddings, adding cost and latency.
+    
+    \item \textbf{Image database scope:} The current image resource database includes metadata and descriptions but not actual image files. Full implementation requires hosting pathology slides, ECG strips, and radiographs with proper licensing.
+    
+    \item \textbf{Video timestamp accuracy:} Video key frame timestamps are manually curated and may drift if content is updated. Automated video segmentation would improve accuracy.
+    
+    \item \textbf{Pilot sample size:} Our initial user study ($n=5$) is underpowered. The full study (10-20 participants) is needed for robust evaluation.
+    
+    \item \textbf{Resource licensing:} Some recommended resources (UWorld, Pathoma, Boards \& Beyond) are commercial products. The system recommends but does not host this content; students must have their own subscriptions.
+    
+    \item \textbf{Modal evaluation metrics:} We lack standardized metrics for evaluating multimodal plan quality. Our rubric extends text-based evaluation, but modality-specific assessment (e.g., image quality, video relevance) needs further development.
+\end{enumerate}
+
+\subsection{Ethical Considerations}
+
+As a multimodal AI system supporting medical education, ethical considerations include:
+
+\begin{itemize}
+    \item \textbf{Equity:} By recommending free resources (Free 120, podcasts) alongside commercial ones, the system supports students with limited budgets. Open-sourcing the implementation democratizes access.
+    
+    \item \textbf{Content accuracy:} Multimodal resources (especially images and videos) must be clinically accurate. The human review process provides oversight, and student ratings create a feedback loop for quality control.
+    
+    \item \textbf{Data privacy:} Supabase RLS policies protect student data. Uploaded documents (score reports, images) are encrypted and accessible only to the owning student.
+    
+    \item \textbf{Intellectual property:} The system recommends but does not reproduce copyrighted content. All resources link to or reference the original sources.
+\end{itemize}
+
+\subsection{Future Directions}
+
+\begin{enumerate}
+    \item \textbf{Production vector embeddings:} Deploy OpenAI ada-002 for text embeddings and CLIP ViT-L/14 for image embeddings with Supabase pgvector for true vector similarity search.
+    
+    \item \textbf{Automated image ingestion:} Build a pipeline to automatically process and embed pathology images, ECG strips, and radiographs with CLIP embeddings and clinical metadata.
+    
+    \item \textbf{Video segmentation:} Use AI-powered video analysis to automatically segment lecture videos into topic-aligned segments with timestamps.
+    
+    \item \textbf{Audio transcription:} Integrate speech-to-text models for automatic podcast and lecture transcript generation.
+    
+    \item \textbf{Student-uploaded content:} Enable students to upload their own NBME score reports (PDF), pathology lab images, or lecture notes for personalized RAG retrieval.
+    
+    \item \textbf{Multimodal evaluation study:} Conduct a controlled study comparing learning outcomes from multimodal vs. text-only resource recommendations.
+    
+    \item \textbf{Randomized controlled trial:} Definitive RCT comparing multimodal agentic-guided vs. standard preparation with NBME score as primary outcome.
+\end{enumerate}

@@ -1,0 +1,393 @@
+# IMG Student Persona Profiles
+# Created by: Blessie (Clinical Lead)
+# Purpose: Define benchmark personas for validating AI-generated study plans
+
+## Profile 1: The "Biochemistry Struggler"
+
+```yaml
+persona_id: "IMG-BIO-001"
+name: "Priya Sharma"
+background:
+  origin: "India"
+  medical_school: "Government Medical College, Chennai"
+  graduation_year: 2023
+  us_clinical_experience: "2 months observership in Internal Medicine"
+  
+baseline_metrics:
+  nbme_score: 180
+  uworld_percentile: 42
+  uworld_correct_rate: 48
+  
+weak_areas:
+  - area: "Biochemistry"
+    proficiency: 35
+    specific_gaps:
+      - "Enzyme kinetics (Michaelis-Menten, inhibition patterns)"
+      - "Glycogen storage diseases"
+      - "Lipid metabolism pathways"
+      - "Vitamin deficiencies"
+  - area: "Molecular Biology"
+    proficiency: 40
+    specific_gaps:
+      - "DNA repair mechanisms"
+      - "Transcription regulation"
+      - "Genetic inheritance patterns"
+      
+strong_areas:
+  - area: "Anatomy"
+    proficiency: 75
+  - area: "Physiology"
+    proficiency: 72
+  
+constraints:
+  study_hours_per_day: 6
+  days_available: 7
+  target_exam_date: "2026-09-15"
+  months_to_exam: 5
+  budget: "Limited - relies on UWorld + First Aid only"
+  
+learning_style:
+  preference: "Visual learner"
+  struggles_with: "Long reading sessions"
+  responds_well_to: "Videos + practice questions + pathology images"
+  preferred_modalities: ["video", "image", "text"]
+
+gold_standard_plan:
+  # Blessie's ideal plan for this student
+  week_1_focus:
+    primary: "Biochemistry - Metabolic Pathways (First Aid + Pathoma videos)"
+    secondary: "Physiology review (maintenance - Anki only)"
+    practice_questions: 150
+    expected_improvement: "Biochem 35% → 42%"
+  week_2_focus:
+    primary: "Biochemistry - Molecular Biology + Genetics"
+    secondary: "Anatomy rapid review"
+    practice_questions: 175
+    expected_improvement: "Biochem 42% → 48%"
+  critical_resources:
+    - "Boards & Beyond Biochemistry lectures"
+    - "UWorld Biochemistry questions (all)"
+    - "First Aid Biochemistry chapter (annotated)"
+    - "Anki - AnKing Biochemistry cards"
+```
+
+## Profile 2: The "Clinical Reasoning Gap"
+
+```yaml
+persona_id: "IMG-CLIN-002"
+name: "Ahmed Hassan"
+background:
+  origin: "Egypt"
+  medical_school: "Cairo University"
+  graduation_year: 2022
+  us_clinical_experience: "None"
+  
+baseline_metrics:
+  nbme_score: 195
+  uworld_percentile: 55
+  uworld_correct_rate: 58
+  
+weak_areas:
+  - area: "Ethics & Professionalism"
+    proficiency: 45
+    specific_gaps:
+      - "US-specific legal frameworks"
+      - "Informed consent nuances"
+      - "End-of-life decision making"
+      - "Physician-patient communication"
+  - area: "Preventive Medicine"
+    proficiency: 48
+    specific_gaps:
+      - "USPSTF screening guidelines"
+      - "Vaccination schedules (US)"
+      - "Biostatistics interpretation"
+      
+strong_areas:
+  - area: "Pathology"
+    proficiency: 78
+  - area: "Pharmacology"
+    proficiency: 75
+  - area: "Microbiology"
+    proficiency: 72
+  
+constraints:
+  study_hours_per_day: 8
+  days_available: 6
+  target_exam_date: "2026-08-01"
+  months_to_exam: 4
+  budget: "Moderate - has UWorld, First Aid, Pathoma, B&B"
+  
+learning_style:
+  preference: "Reading-heavy learner"
+  struggles_with: "Ethics questions (cultural differences)"
+  responds_well_to: "Practice questions + explanation review"
+  preferred_modalities: ["text", "pdf", "image"]
+
+gold_standard_plan:
+  week_1_focus:
+    primary: "Ethics - First Aid Behavioral Sciences + UWorld Ethics questions"
+    secondary: "Pathology maintenance (20 questions/day only)"
+    practice_questions: 200
+    expected_improvement: "Ethics 45% → 55%"
+  week_2_focus:
+    primary: "Preventive Medicine - USPSTF guidelines memorization"
+    secondary: "Biostatistics practice (UWorld + NBME-style)"
+    practice_questions: 180
+    expected_improvement: "Preventive Med 48% → 58%"
+  critical_resources:
+    - "First Aid Behavioral Sciences + Ethics"
+    - "UWorld Ethics + Preventive Medicine blocks"
+    - "USPSTF guidelines summary tables"
+    - "Boards & Beyond Biostatistics"
+```
+
+## Profile 3: The "Overwhelmed Beginner"
+
+```yaml
+persona_id: "IMG-BEG-003"
+name: "Maria Santos"
+background:
+  origin: "Philippines"
+  medical_school: "University of Santo Tomas"
+  graduation_year: 2024
+  us_clinical_experience: "None"
+  
+baseline_metrics:
+  nbme_score: 165
+  uworld_percentile: 28
+  uworld_correct_rate: 35
+  
+weak_areas:
+  - area: "All systems"
+    proficiency: 30
+    specific_gaps:
+      - "Foundational knowledge gaps across all subjects"
+      - "Cannot differentiate similar pathologies"
+      - "Weak pharmacology basics"
+      - "No US clinical context"
+  - area: "Test-taking strategy"
+    proficiency: 25
+    specific_gaps:
+      - "Runs out of time on exams"
+      - "Misreads question stems"
+      - "Second-guesses correct answers"
+      
+strong_areas:
+  - area: "None identified"
+    proficiency: 0
+  
+constraints:
+  study_hours_per_day: 4
+  days_available: 5
+  target_exam_date: "2027-01-10"
+  months_to_exam: 9
+  budget: "Very limited - UWorld only"
+  personal: "Working part-time, has family obligations"
+  
+learning_style:
+  preference: "Needs structure and accountability"
+  struggles_with: "Self-directed study"
+  responds_well_to: "Clear daily goals + small wins + visual explanations"
+  preferred_modalities: ["video", "image", "text"]
+
+gold_standard_plan:
+  week_1_focus:
+    primary: "Physiology - Cardiovascular + Respiratory (build foundation)"
+    secondary: "Test-taking strategy (timed 20-question blocks)"
+    practice_questions: 75
+    expected_improvement: "Physiology 30% → 35%"
+  week_2_focus:
+    primary: "Physiology - Renal + GI"
+    secondary: "Pathology - General (inflammation, neoplasia)"
+    practice_questions: 80
+    expected_improvement: "Physiology 35% → 40%"
+  critical_resources:
+    - "First Aid (read 10 pages/day)"
+    - "UWorld - start with Physiology, easiest questions first"
+    - "Anki - 30 new cards/day maximum"
+  special_considerations:
+    - "Plan must be realistic for 4 hours/day"
+    - "Build confidence early - start with manageable topics"
+    - "Weekly check-ins to prevent discouragement"
+    - "Do NOT overload with resources - focus on UWorld + FA only"
+```
+
+## Profile 4: The "High Achiever"
+
+```yaml
+persona_id: "IMG-HIGH-004"
+name: "Jin Wei"
+background:
+  origin: "China"
+  medical_school: "Peking Union Medical College"
+  graduation_year: 2023
+  us_clinical_experience: "6 months research fellowship at Mayo Clinic"
+  
+baseline_metrics:
+  nbme_score: 225
+  uworld_percentile: 82
+  uworld_correct_rate: 85
+  
+weak_areas:
+  - area: "Rare diseases"
+    proficiency: 65
+    specific_gaps:
+      - "Rare genetic disorders"
+      - "Unusual infections (tropical medicine)"
+      - "Zebra diagnoses that appear on NBME but not in practice"
+  - area: "Fine details"
+    proficiency: 70
+    specific_gaps:
+      - "Drug side effect specifics"
+      - "Rare lab value associations"
+      - "Subtle pathology distinctions"
+      
+strong_areas:
+  - area: "Cardiology"
+    proficiency: 90
+  - area: "Neurology"
+    proficiency: 88
+  - area: "Pathology"
+    proficiency: 85
+  - area: "Pharmacology"
+    proficiency: 83
+  
+constraints:
+  study_hours_per_day: 10
+  days_available: 7
+  target_exam_date: "2026-07-01"
+  months_to_exam: 3
+  budget: "Unlimited - has all resources"
+  goal: "Score 250+ for competitive specialty (Dermatology)"
+  
+learning_style:
+  preference: "Self-directed, analytical"
+  struggles_with: "Inefficient review of already-mastered topics"
+  responds_well_to: "Targeted weak-area focus + NBME practice + pathology images"
+  preferred_modalities: ["text", "image", "pdf"]
+
+gold_standard_plan:
+  week_1_focus:
+    primary: "Rare diseases - First Aid rapid review + UWorld incorrects"
+    secondary: "NBME 26 (baseline assessment)"
+    practice_questions: 250
+    expected_improvement: "Maintain 225+, identify remaining gaps"
+  week_2_focus:
+    primary: "UWorld incorrect review (all subjects)"
+    secondary: "Free 120 questions (timed)"
+    practice_questions: 300
+    expected_improvement: "225 → 230"
+  critical_resources:
+    - "UWorld - 100% completion + incorrect review"
+    - "NBME Forms 25-31 (one per week)"
+    - "Free 120 (most representative)"
+    - "First Aid - rapid review section only"
+    - "Pathoma - chapters 1-3 (general pathology) for refinement"
+  special_considerations:
+    - "Avoid over-studying strong areas"
+    - "Focus on NBME-style question patterns"
+    - "Simulate exam conditions weekly"
+    - "Prevent burnout - schedule 1 rest day/week"
+```
+
+## Profile 5: The "Retaker"
+
+```yaml
+persona_id: "IMG-RET-005"
+name: "Oluwaseun Adeyemi"
+background:
+  origin: "Nigeria"
+  medical_school: "University of Lagos"
+  graduation_year: 2021
+  us_clinical_experience: "1 year research position at Johns Hopkins"
+  previous_attempts:
+    - date: "2025-06-15"
+      score: 188
+      result: "Fail (passing score was 196)"
+  
+baseline_metrics:
+  nbme_score: 192
+  uworld_percentile: 52
+  uworld_correct_rate: 55
+  
+weak_areas:
+  - area: "Cardiology"
+    proficiency: 45
+    specific_gaps:
+      - "Heart failure management algorithms"
+      - "Arrhythmia interpretation"
+      - "Murmur identification"
+  - area: "Renal"
+    proficiency: 48
+    specific_gaps:
+      - "Acid-base disorders"
+      - "Electrolyte imbalances"
+      - "Glomerular diseases"
+  - area: "Test anxiety"
+    proficiency: 40
+    specific_gaps:
+      - "Performance drops under timed conditions"
+      - "Previous failure creating mental block"
+      
+strong_areas:
+  - area: "Microbiology"
+    proficiency: 78
+  - area: "Biochemistry"
+    proficiency: 72
+  
+constraints:
+  study_hours_per_day: 7
+  days_available: 6
+  target_exam_date: "2026-10-01"
+  months_to_exam: 6
+  budget: "Moderate - has UWorld, First Aid"
+  psychological: "Needs confidence rebuilding after failure"
+  
+learning_style:
+  preference: "Analytical learner, needs understanding over memorization"
+  struggles_with: "Timed exams, Cardiology/Renal"
+  responds_well_to: "Concept mapping + teaching back + visual pathology"
+  preferred_modalities: ["video", "image", "text"]
+
+gold_standard_plan:
+  week_1_focus:
+    primary: "Cardiology - Heart Failure (First Aid + B&B + UWorld)"
+    secondary: "Microbiology maintenance (20 questions/day)"
+    practice_questions: 180
+    expected_improvement: "Cardiology 45% → 52%"
+    confidence_building: "Start with topics he already knows well"
+  week_2_focus:
+    primary: "Cardiology - Arrhythmias + Murmurs"
+    secondary: "Renal - Acid-base (B&B lectures)"
+    practice_questions: 190
+    expected_improvement: "Cardiology 52% → 58%"
+  critical_resources:
+    - "Boards & Beyond Cardiology (full series)"
+    - "UWorld Cardiology + Renal blocks"
+    - "First Aid Cardiology + Renal chapters"
+    - "Sketchy Micro (for maintenance)"
+  special_considerations:
+    - "Address test anxiety: weekly timed practice building to full exams"
+    - "Previous NBME score report analysis to identify what went wrong"
+    - "Psychological support - previous failure is a mental burden"
+    - "Celebrate small wins to rebuild confidence"
+    - "NBME 27 at week 4 to confirm progress trajectory"
+```
+
+---
+
+## Validation Rubric (For Blessie)
+
+When reviewing AI-generated plans for these personas, score each on:
+
+| Criterion | 0 (Fail) | 1 (Partial) | 2 (Pass) |
+|-----------|----------|-------------|----------|
+| **Addresses stated weak areas** | Ignores weak areas | Some focus | Primary focus on weakest |
+| **Respects time constraints** | Plans exceed available hours | Close to limit | Well-calibrated |
+| **Resource appropriateness** | Recommends wrong-level resources | Mostly appropriate | Perfectly matched |
+| **Interleaving quality** | All blocked practice | Some mixing | Optimal interleaving |
+| **Confidence building** | No consideration | Some encouragement | Strategic early wins |
+| **IMG-specific needs** | Generic plan | Some IMG awareness | Addresses IMG gaps |
+| **Feasibility** | Impossible schedule | Challenging but doable | Realistic and sustainable |
+
+**Minimum acceptable score**: 10/14 (71%) for each persona's plan

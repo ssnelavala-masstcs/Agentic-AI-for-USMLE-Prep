@@ -1,0 +1,64 @@
+site_name: USMLE Agentic AI - User Guide
+site_description: Documentation for the Agentic AI USMLE Study Planning System
+site_author: Stanley Sujith Nelavala
+repo_url: https://github.com/stanley-nelavala/Agentic-AI-for-USMLE-Prep
+
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - roamlinks
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Configuration: getting-started/configuration.md
+      - Quick Start: getting-started/quickstart.md
+  - Architecture:
+      - System Overview: architecture/overview.md
+      - Agents: architecture/agents.md
+      - Multimodal RAG: architecture/multimodal_rag.md
+      - Database: architecture/database.md
+  - API Reference:
+      - Endpoints: api/endpoints.md
+      - Schemas: api/schemas.md
+  - Researcher's Handbook:
+      - Methodology: research/methodology.md
+      - Evaluation: research/evaluation.md
+  - Student Guide:
+      - Onboarding: students/onboarding.md
+      - Using Your Plan: students/using-plans.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/stanley-nelavala/Agentic-AI-for-USMLE-Prep
+  generator: false
+
+copyright: Copyright &copy; 2026 Stanley Sujith Nelavala

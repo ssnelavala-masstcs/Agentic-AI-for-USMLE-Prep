@@ -1,0 +1,8 @@
+student_id,timestamp,subject,topic,questions_attempted,correct_answers,time_per_question_sec,confidence_score
+IMG001,2026-04-01T10:00:00Z,Cardiology,Heart Failure,25,15,90,3.2
+IMG001,2026-04-01T14:00:00Z,Biochemistry,Enzyme Kinetics,20,10,105,2.5
+IMG001,2026-04-02T09:00:00Z,Anatomy,Thorax,30,24,75,4.1
+IMG002,2026-04-01T10:00:00Z,Pharmacology,Autonomic Drugs,35,25,80,3.5
+IMG002,2026-04-01T15:00:00Z,Neurology,Stroke Syndromes,20,14,95,3.0
+IMG003,2026-04-01T11:00:00Z,Pathology,Inflammation,15,8,120,2.0
+IMG003,2026-04-02T10:00:00Z,Physiology,Respiratory,25,18,85,3.8

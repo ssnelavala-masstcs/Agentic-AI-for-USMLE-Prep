@@ -1,0 +1,5 @@
+student_id,name,email,nbme_score,uworld_percentile,weak_areas,strong_areas,study_hours_per_day,target_exam_date
+IMG001,John Doe,john.doe@email.com,185,45,"Cardiology,Biochemistry","Anatomy,Physiology",6,2026-09-15
+IMG002,Jane Smith,jane.smith@email.com,210,62,"Pharmacology,Neurology","Pathology,Microbiology",8,2026-11-20
+IMG003,Alex Johnson,alex.j@email.com,165,32,"All Systems",Basic Sciences,4,2027-01-10
+IMG004,Maria Garcia,maria.g@email.com,225,78,"Ethics,Preventive Medicine","Clinical Skills,Diagnostic Reasoning",10,2026-08-01

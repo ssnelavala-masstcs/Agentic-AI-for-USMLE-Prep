@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+
+% JMIR-style formatting
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{array}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    citecolor=blue,
+}
+
+% Document metadata
+\title{Agentic AI for Personalized USMLE Study Planning: A Multi-Agent Adaptive Learning System for International Medical Graduates}
+
+\author{
+    Stanley Sujith Nelavala\textsuperscript{1,*},
+    Blessie\textsuperscript{2} \\
+    \textsuperscript{1}{Independent Researcher, Medical AI} \\
+    \textsuperscript{2}{Clinical Research Advisor, IMG Education} \\
+    \textsuperscript{*}{Corresponding author}
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent\textbf{Background:} International Medical Graduates (IMGs) face unique challenges in preparing for the United States Medical Licensing Examination (USMLE), requiring personalized study strategies that adapt to individual knowledge gaps. Current AI tutoring systems rely on static Retrieval-Augmented Generation (RAG) architectures that lack dynamic adaptation to student performance trajectories.
+
+\noindent\textbf{Objective:} We present a multi-agent AI system leveraging LangGraph orchestration to create adaptive, interleaved study plans that respond in real-time to student performance data, implementing evidence-based learning science principles including spaced repetition and interleaved practice.
+
+\noindent\textbf{Methods:} The system employs three specialized agents: (1) a Diagnostician agent that parses NBME/UWorld performance reports using Groq's Llama-3.1 model, (2) a Knowledge Manager that maintains persistent student knowledge vectors in Supabase, and (3) an Adaptive Scheduler that generates 7-day study blocks using interleaved practice principles. We evaluate the system through a pilot study with IMG students, measuring score improvements and qualitative satisfaction.
+
+\noindent\textbf{Results:} The agentic architecture demonstrates measurable improvements in study plan personalization compared to baseline static approaches. Human-in-the-loop evaluation confirms clinical validity of generated recommendations.
+
+\noindent\textbf{Conclusions:} Agentic AI represents a novel paradigm for medical education technology, moving beyond static content generation to dynamic, adaptive coaching. This work establishes a foundation for future research on AI-driven USMLE preparation.
+
+\noindent\textbf{Keywords:} USMLE; Medical Education; Agentic AI; LangGraph; Large Language Models; International Medical Graduates; Adaptive Learning
+\end{abstract}
+
+% Include sections
+\input{sections/01_introduction}
+\input{sections/02_methods}
+\input{sections/03_results}
+\input{sections/04_discussion}
+\input{sections/05_conclusion}
+
+% References
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

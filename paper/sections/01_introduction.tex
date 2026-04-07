@@ -1,0 +1,48 @@
+\section{Introduction}
+
+The United States Medical Licensing Examination (USMLE) represents a critical gateway for International Medical Graduates (IMGs) seeking residency training in the United States. In 2024, over 45,000 IMGs attempted the Step 1 examination, with first-time pass rates ranging from 68\% to 82\% depending on graduation year and geographic origin \cite{fsmb2024}. Unlike US medical graduates, IMGs often face additional challenges including limited clinical exposure to the US healthcare system, varying baseline preparation, and constrained access to personalized tutoring resources.
+
+\subsection{The IMG Preparation Challenge}
+
+Research consistently identifies several factors contributing to the preparation gap between IMGs and US graduates. Chen et al. \cite{chen2023img} found that IMGs typically require 6-9 months of dedicated study time, compared to 3-4 months for US graduates, and often lack the structured curricular support available through US medical schools. Furthermore, the transition from memorization-based learning in many international curricula to the clinical reasoning emphasis of USMLE presents a distinct pedagogical challenge \cite{patel2024transition}.
+
+Current commercial preparation resources—including UWorld, NBME practice exams, and question banks—provide extensive content but limited personalization. While these tools offer performance analytics, they do not dynamically adapt study schedules based on identified weaknesses or implement evidence-based learning strategies such as spaced repetition scheduling or interleaved practice \cite{artino2022testprep}.
+
+\subsection{Limitations of Current AI Tutoring Systems}
+
+The application of Large Language Models (LLMs) to medical education has expanded rapidly since the release of GPT-4 and subsequent models. Recent work by \cite{li2024llm} demonstrated that LLMs can achieve passing scores on USMLE-style questions, and \cite{christ2024tutoring} explored LLM-based tutoring for individual topics. However, these systems predominantly employ static Retrieval-Augmented Generation (RAG) architectures that retrieve text-based content but do not leverage the full spectrum of educational modalities.
+
+Medical education is inherently multimodal: students learn from pathology slide images, ECG strips, radiographic findings, video lectures, audio podcasts, and PDF score reports. A text-only RAG system cannot retrieve a relevant ECG strip when a student struggles with arrhythmia interpretation, nor can it recommend a specific Pathoma video timestamp for understanding heart failure pathology. This modality gap is particularly critical for IMGs, who often benefit from visual and multimodal learning to compensate for limited clinical exposure in the US system \cite{wang2024multimodal}.
+
+The fundamental limitation of existing systems is threefold: (1) statelessness—each interaction is independent, preventing the system from building a persistent model of student knowledge; (2) unimodality—retrieval is limited to text, ignoring images, video, and audio; and (3) non-adaptivity—retrieved content does not change based on longitudinal performance trajectories \cite{wang2024adaptive}.
+
+\subsection{Multimodal Agentic AI as a Novel Paradigm}
+
+Agentic AI architectures address these limitations by decomposing the tutoring task into specialized, communicating agents that maintain state and adapt over time. Our system introduces \textbf{multimodal RAG}—the ability to retrieve and recommend content across text, images, PDFs, video, and audio modalities—within an agentic orchestration framework. Unlike monolithic LLM systems, our architecture allows for:
+
+\begin{enumerate}
+    \item \textbf{Stateful orchestration:} Agents maintain persistent context about student progress, enabling longitudinal adaptation.
+    \item \textbf{Multimodal retrieval:} The Resource Optimizer agent retrieves across five modalities (text, image, PDF, video, audio) using unified relevance scoring, enabling recommendations like specific pathology images, ECG strips, or video timestamps alongside text content.
+    \item \textbf{Modular specialization:} Different agents are optimized for specific tasks (diagnosis, resource curation, scheduling) rather than relying on a single model for all functions.
+    \item \textbf{Human-in-the-loop integration:} Critical decisions are routed to human educators for review, combining AI efficiency with clinical judgment.
+    \item \textbf{Evidence-based strategy implementation:} Agents encode learning science principles (spaced repetition, interleaving, active recall) directly into scheduling logic.
+    \item \textbf{IMG-specific optimization:} The system boosts resources designed for IMG challenges (US healthcare system, reference lab values, clinical context gaps).
+\end{enumerate}
+
+LangGraph, a recently developed framework for building stateful multi-agent applications, provides the infrastructure needed to implement such systems with explicit state graphs and conditional routing \cite{langgraph2024}.
+
+\subsection{Contributions}
+
+This paper presents the design, implementation, and initial evaluation of a \textbf{multimodal agentic AI system} for personalized USMLE study planning. Our contributions include:
+
+\begin{itemize}
+    \item A novel four-agent architecture (Diagnostician, Knowledge Manager, Multimodal Resource Optimizer, Adaptive Scheduler) implemented using LangGraph
+    \item The first multimodal RAG system for medical education, supporting retrieval across text, images (pathology slides, ECGs, radiographs, diagrams), PDFs (score reports, study guides), video (Pathoma, Boards \& Beyond lectures with timestamp-level retrieval), and audio (podcasts, lecture transcripts)
+    \item A curated multimodal resource database of 45+ USMLE study resources with clinical validation by a medical education specialist
+    \item Integration of evidence-based learning strategies (interleaved practice, spaced repetition) into AI-generated study plans
+    \item A Supabase-backed persistent knowledge vector system with pgvector support for multimodal embeddings (OpenAI ada-002 for text, CLIP ViT-L/14 for images)
+    \item Human-in-the-loop review capability for clinical oversight
+    \item Open-source implementation and evaluation framework for reproducible research
+\end{itemize}
+
+To our knowledge, this is the first work to apply multimodal agentic AI orchestration to USMLE study planning, representing a shift from static text-based content delivery to dynamic, multimodal, adaptive educational coaching.

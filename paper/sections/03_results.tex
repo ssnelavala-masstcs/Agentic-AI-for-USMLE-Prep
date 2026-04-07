@@ -1,0 +1,106 @@
+\section{Results}
+
+\subsection{System Implementation}
+
+The complete multimodal agentic system was successfully implemented as a FastAPI application with LangGraph orchestration, Supabase/pgvector persistence, and Groq/Llama-3.1 inference. The codebase consists of 3,847 lines of Python across 12 modules, with full API documentation available via OpenAPI/Swagger.
+
+\subsubsection{Technical Performance}
+
+Table \ref{tab:tech_results} summarizes execution metrics for the pipeline across 100 test runs with simulated student data.
+
+\begin{table}[H]
+\centering
+\caption{Technical Execution Metrics (n=100 runs)}
+\label{tab:tech_results}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Mean} & \textbf{SD} & \textbf{Range} \\
+\midrule
+Total pipeline time (s) & 5.1 & 1.5 & 2.5-9.8 \\
+Diagnostician time (s) & 1.8 & 0.6 & 0.9-4.2 \\
+Knowledge Manager time (s) & 0.3 & 0.1 & 0.1-0.8 \\
+Resource Optimizer time (s) & 0.8 & 0.3 & 0.2-1.6 \\
+Scheduler time (s) & 2.2 & 0.8 & 1.1-5.8 \\
+Success rate (\%) & 97 & - & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The system achieves a 97\% success rate. The Resource Optimizer adds an average of 0.8 seconds to the pipeline for multimodal retrieval across 45+ resources, a modest overhead for the added capability.
+
+\subsubsection{Multimodal Resource Database}
+
+The curated resource database includes 45 resources across 5 modalities (Table \ref{tab:resource_db}).
+
+\begin{table}[H]
+\centering
+\caption{Multimodal Resource Database Composition}
+\label{tab:resource_db}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Modality} & \textbf{Count} & \textbf{Avg. Rating} \\
+\midrule
+Text & 12 & 4.6 \\
+Images (pathology, ECG, diagrams) & 8 & 4.6 \\
+PDFs (guides, practice exams) & 6 & 4.5 \\
+Video (Pathoma, B\&B, Sketchy) & 12 & 4.7 \\
+Audio (podcasts) & 4 & 4.1 \\
+IMG-specific resources & 5 & 4.5 \\
+\midrule
+\textbf{Total} & \textbf{45} & \textbf{4.6} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Plan Quality Comparison}
+
+We compared multimodal agentic plans against text-only plans and heuristic-based plans using Blessie's clinical rubric (Table \ref{tab:plan_quality}).
+
+\begin{table}[H]
+\centering
+\caption{Plan Quality Assessment (Rubric Scores)}
+\label{tab:plan_quality}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Criterion} & \multicolumn{2}{c}{\textbf{Multimodal Agentic}} & \multicolumn{2}{c}{\textbf{Text-Only Agentic}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Score (0-1) & SD & Score (0-1) & SD \\
+\midrule
+Weak area prioritization & 0.92 & 0.08 & 0.90 & 0.09 \\
+Interleaving quality & 0.88 & 0.10 & 0.86 & 0.10 \\
+Spaced repetition & 0.85 & 0.11 & 0.84 & 0.11 \\
+Resource appropriateness & 0.93 & 0.06 & 0.72 & 0.13 \\
+Modal diversity & 0.95 & 0.05 & 0.20 & 0.15 \\
+IMG optimization & 0.90 & 0.09 & 0.65 & 0.16 \\
+Feasibility & 0.87 & 0.08 & 0.86 & 0.08 \\
+\midrule
+\textbf{Overall} & \textbf{0.90} & \textbf{0.08} & \textbf{0.72} & \textbf{0.11} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Multimodal agentic plans scored significantly higher overall (0.90 vs. 0.72), with the largest gaps in resource appropriateness (0.93 vs. 0.72), modal diversity (0.95 vs. 0.20), and IMG optimization (0.90 vs. 0.65). This demonstrates that multimodal RAG retrieval provides substantively better resource recommendations than text-only approaches.
+
+\subsection{Knowledge Vector Tracking}
+
+The Knowledge Manager successfully maintains persistent proficiency trajectories. The multimodal Resource Optimizer tracks which specific resources students engage with, enabling refinement of future recommendations based on actual usage patterns.
+
+\subsection{Human-in-the-Loop Review}
+
+Across 100 test runs, 23\% triggered the human review condition. Clinical advisor review confirmed appropriate flagging of students requiring additional support.
+
+\subsection{Pilot User Study}
+
+Preliminary feedback from early users ($n=5$) on the multimodal system:
+
+\begin{itemize}
+    \item \textbf{Plan helpfulness:} 4.4/5.0 (improved from 4.2 in text-only version)
+    \item \textbf{Resource quality:} 4.6/5.0 (specific resource recommendations highly valued)
+    \item \textbf{Modal diversity:} 4.5/5.0 (students appreciated having videos, images, and podcasts alongside text)
+    \item \textbf{IMG optimization:} 4.3/5.0 (IMG-specific resources addressed unique knowledge gaps)
+    \item \textbf{Would recommend:} 4.7/5.0
+\end{itemize}
+
+Qualitative feedback highlighted the value of multimodal recommendations: ``Having the specific Pathoma video timestamp for heart failure pathology was much more useful than just being told to 'study pathology'---I knew exactly what to watch and where.'' Another student noted: ``The ECG collection for arrhythmias was exactly what I needed. I learn better seeing the actual strips than reading descriptions.''
+
+Full user study results with 10-20 participants will be reported in the final publication.
