@@ -1,7 +1,8 @@
 site_name: USMLE Agentic AI - User Guide
 site_description: Documentation for the Agentic AI USMLE Study Planning System
 site_author: Stanley Sujith Nelavala
-repo_url: https://github.com/stanley-nelavala/Agentic-AI-for-USMLE-Prep
+repo_url: https://github.com/ssnelavala-masstcs/Agentic-AI-for-USMLE-Prep
+site_url: https://ssnelavala-masstcs.github.io/Agentic-AI-for-USMLE-Prep/
 
 theme:
   name: material
@@ -58,7 +59,7 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/stanley-nelavala/Agentic-AI-for-USMLE-Prep
+      link: https://github.com/ssnelavala-masstcs/Agentic-AI-for-USMLE-Prep
   generator: false
 
 copyright: Copyright &copy; 2026 Stanley Sujith Nelavala
